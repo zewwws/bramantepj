@@ -31,7 +31,12 @@ your account password.
 
 ### 2. Create the web app
 
-**Web → Add a new web app → Manual configuration → Python 3.12**. Then, on the Web tab:
+**Web → Add a new web app → Manual configuration → Python 3.12**. Don't pick "Django":
+it tries to create a new project and fails because `bramantepj` already exists. (If you
+end up in the Django quickstart anyway, let it create a throwaway `mysite` project; the
+WSGI file below makes the site ignore it, and "Source code" on the Web tab is only a label.)
+
+Then, on the Web tab (click a dashed value to edit it):
 
 - **Virtualenv:** `/home/USERNAME/bramantepj/.venv`
 - **Static files** (add two entries):
@@ -55,6 +60,7 @@ import sys
 path = '/home/USERNAME/bramantepj'
 if path not in sys.path:
     sys.path.insert(0, path)
+os.chdir(path)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'br_core.settings'
 os.environ['DJANGO_SECRET_KEY'] = 'PASTE-THE-GENERATED-KEY-HERE'
@@ -83,8 +89,8 @@ Then click **Reload** on the Web tab.
 
 ### Notes
 
-- The free plan expires unless you log in and click **"Run until 3 months from today"**
-  on the Web tab every 3 months.
+- The free plan expires unless you log in and click **"Run until 1 month from today"**
+  on the Web tab every month (PythonAnywhere e-mails a reminder a week before).
 - The database on PythonAnywhere is separate from your local one: products edited
   and contact requests received there stay there.
 
