@@ -1,0 +1,12 @@
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>Aveți un proiect în minte?</h2>
+      <p>Trimiteți-ne dimensiunile aproximative și revenim cu o ofertă, fără obligații.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-light" href="{% url 'br_main:contact' %}{% if product %}?produs={{ product.slug }}{% endif %}">Cere ofertă</a>
+      <a class="btn btn-ghost" href="tel:{{ company.phone_intl }}">{{ company.phone }}</a>
+    </div>
+  </div>
+</section>

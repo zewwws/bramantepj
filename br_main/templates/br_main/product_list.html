@@ -1,0 +1,30 @@
+{% extends 'br_main/base.html' %}
+
+{% block title %}Produse — {{ company.name }}{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Produse</p>
+    <h1>Tâmplărie din PVC și aluminiu</h1>
+    <p class="lead">Ferestre, uși și construcții realizate la comandă, pentru locuințe, birouri și spații comerciale.</p>
+  </div>
+</section>
+
+{% for key, label, items in groups %}
+<section class="section{% cycle '' ' section-tint' %}" id="{{ key }}">
+  <div class="wrap">
+    <h2 class="group-title">{{ label }}</h2>
+    <div class="cards">
+      {% for product in items %}
+        {% include 'br_main/partials/product_card.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% empty %}
+<section class="section"><div class="wrap"><p>Produsele vor fi adăugate în curând.</p></div></section>
+{% endfor %}
+
+{% include 'br_main/partials/cta.html' %}
+{% endblock %}

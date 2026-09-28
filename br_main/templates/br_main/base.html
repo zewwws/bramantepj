@@ -1,0 +1,71 @@
+{% load static %}<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ company.name }} — Fabrica de ferestre{% endblock %}</title>
+  <meta name="description" content="{% block description %}Ferestre, uși și construcții din PVC și aluminiu, produse și montate de {{ company.name }}.{% endblock %}">
+  <link rel="icon" type="image/png" href="{% static 'br_main/images/bramante_favicon_option_1_512x512.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'br_main/css/site.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{% url 'br_main:home' %}">
+        <img src="{% static 'br_main/images/bramante_original_logo_transparent.png' %}" alt="{{ company.name }} — Fabrica de ferestre">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Meniu</span><span class="bar"></span>
+      </button>
+      {% with url_name=request.resolver_match.url_name %}
+      <nav id="site-nav" class="site-nav">
+        <a href="{% url 'br_main:home' %}" {% if url_name == 'home' %}aria-current="page"{% endif %}>Acasă</a>
+        <a href="{% url 'br_main:product_list' %}" {% if url_name == 'product_list' or url_name == 'product_detail' %}aria-current="page"{% endif %}>Produse</a>
+        <a href="{% url 'br_main:about' %}" {% if url_name == 'about' %}aria-current="page"{% endif %}>Despre noi</a>
+        <a href="{% url 'br_main:contact' %}" {% if url_name == 'contact' %}aria-current="page"{% endif %}>Contact</a>
+        <a class="btn btn-light nav-cta" href="{% url 'br_main:contact' %}">Cere ofertă</a>
+      </nav>
+      {% endwith %}
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-emblem" src="{% static 'br_main/images/bramante_emblem_option_2.png' %}" alt="" width="88" height="88">
+        <p class="footer-tagline">{{ company.tagline }}</p>
+        {% include 'br_main/partials/social.html' %}
+      </div>
+      <div>
+        <h4>Produse</h4>
+        <ul>
+          <li><a href="{% url 'br_main:product_list' %}#ferestre">Ferestre</a></li>
+          <li><a href="{% url 'br_main:product_list' %}#usi">Uși</a></li>
+          <li><a href="{% url 'br_main:product_list' %}#constructii">Construcții din aluminiu</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:{{ company.phone_intl }}">{{ company.phone }}</a></li>
+          {% if company.email %}<li><a href="mailto:{{ company.email }}">{{ company.email }}</a></li>{% endif %}
+          <li><a href="{{ company.map_link }}" target="_blank" rel="noopener">{{ company.address }}</a></li>
+          <li>{{ company.hours }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© {% now "Y" %} {{ company.name }}. Toate drepturile rezervate.</span>
+    </div>
+  </footer>
+
+  <script src="{% static 'br_main/js/site.js' %}" defer></script>
+</body>
+</html>

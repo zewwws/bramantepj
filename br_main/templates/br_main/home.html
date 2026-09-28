@@ -1,0 +1,101 @@
+{% extends 'br_main/base.html' %}
+
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Fabrica de ferestre</p>
+      <h1>Ferestre, uși și construcții din PVC și aluminiu</h1>
+      <p class="lead">Producem în fabrica proprie și montăm cu echipa noastră: tâmplărie la dimensiune, gândită pentru căldură, liniște și ani lungi de folosire.</p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="{% url 'br_main:contact' %}">Solicită gratuit o ofertă</a>
+        <a class="btn btn-ghost" href="{% url 'br_main:product_list' %}">Vezi produsele</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 360">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#9fc3ea"/><stop offset="1" stop-color="#e9f1fb"/>
+          </linearGradient>
+        </defs>
+        <rect x="10" y="10" width="300" height="340" rx="4" fill="#f7f7f5"/>
+        <rect x="26" y="26" width="268" height="308" fill="#e4e4e0"/>
+        <rect x="36" y="36" width="118" height="288" fill="#fff"/>
+        <rect x="166" y="36" width="118" height="288" fill="#fff"/>
+        <rect x="48" y="48" width="94" height="264" fill="url(#sky)"/>
+        <rect x="178" y="48" width="94" height="264" fill="url(#sky)"/>
+        <path d="M60 300 130 60M190 300 262 70" stroke="#fff" stroke-opacity=".55" stroke-width="10"/>
+        <rect x="170" y="170" width="6" height="34" rx="3" fill="#b9b9b3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ce producem</p>
+      <h2>Soluții complete pentru casă, birou și spații comerciale</h2>
+    </div>
+    <div class="cards">
+      {% for product in products|slice:":6" %}
+        {% include 'br_main/partials/product_card.html' %}
+      {% empty %}
+        <p>Produsele vor fi adăugate în curând.</p>
+      {% endfor %}
+    </div>
+    {% if products|length > 6 %}
+      <p class="center"><a class="btn btn-dark" href="{% url 'br_main:product_list' %}">Toate produsele</a></p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">De ce Bramante</p>
+      <h2>Lucru făcut cu grijă, de la profil până la ultimul șurub</h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <span class="feature-num">01</span>
+        <h3>Producție proprie</h3>
+        <p>Fiecare fereastră și ușă este realizată în fabrica noastră, la dimensiunile exacte ale golului.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-num">02</span>
+        <h3>Izolare termică și fonică</h3>
+        <p>Profile multicameră, geam termoizolant dublu sau triplu și garnituri de etanșare de calitate.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-num">03</span>
+        <h3>Montaj profesionist</h3>
+        <p>Echipe proprii de montaj, cu spumă, benzi și finisaje aplicate corect, fără surprize la prima iarnă.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-num">04</span>
+        <h3>Garanție și service</h3>
+        <p>Rămânem alături de dvs. și după montaj: reglaje, întreținere și intervenții rapide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Cum lucrăm</p>
+      <h2>De la prima discuție la montaj, în patru pași</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Consultanță</h3><p>Ne spuneți ce aveți nevoie; vă recomandăm profilul, geamul și accesoriile potrivite.</p></li>
+      <li><h3>Măsurare</h3><p>Venim la fața locului și luăm dimensiunile exacte ale fiecărui gol.</p></li>
+      <li><h3>Producție</h3><p>Tâmplăria este fabricată și verificată în atelierul nostru.</p></li>
+      <li><h3>Montaj</h3><p>Montăm, reglăm și lăsăm totul curat în urma noastră.</p></li>
+    </ol>
+  </div>
+</section>
+
+{% include 'br_main/partials/cta.html' %}
+{% endblock %}

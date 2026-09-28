@@ -1,0 +1,52 @@
+{% extends 'br_main/base.html' %}
+
+{% block title %}Contact — {{ company.name }}{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Cereți o ofertă</h1>
+    <p class="lead">Completați formularul și vă contactăm pentru detalii și programarea măsurării.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap contact">
+    <div class="contact-form">
+      {% for message in messages %}
+        <div class="alert" role="status">{{ message }}</div>
+      {% endfor %}
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="field{% if field.errors %} has-error{% endif %}">
+            <label for="{{ field.id_for_label }}">{{ field.label|capfirst }}{% if field.field.required %} <span aria-hidden="true">*</span>{% endif %}</label>
+            {{ field }}
+            {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+          </div>
+        {% endfor %}
+        <button class="btn btn-dark" type="submit">Trimite cererea</button>
+      </form>
+    </div>
+    <aside class="contact-info">
+      <h2 class="h3">Date de contact</h2>
+      <dl>
+        <dt>Telefon</dt><dd><a href="tel:{{ company.phone_intl }}">{{ company.phone }}</a></dd>
+        {% if company.email %}<dt>E-mail</dt><dd><a href="mailto:{{ company.email }}">{{ company.email }}</a></dd>{% endif %}
+        <dt>Adresă</dt><dd><a href="{{ company.map_link }}" target="_blank" rel="noopener">{{ company.address }}</a></dd>
+        <dt>Program</dt><dd>{{ company.hours }}</dd>
+      </dl>
+      <div class="messengers">
+        <a class="btn btn-whatsapp" href="{{ company.whatsapp }}" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+        <a class="btn btn-viber" href="{{ company.viber }}">Scrie pe Viber</a>
+      </div>
+      <a class="fb-link" href="{{ company.facebook }}" target="_blank" rel="noopener">Urmăriți-ne pe Facebook</a>
+    </aside>
+  </div>
+</section>
+
+<section class="map">
+  <iframe src="{{ company.map_embed }}" title="Harta: {{ company.address }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+{% endblock %}

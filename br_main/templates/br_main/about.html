@@ -1,0 +1,45 @@
+{% extends 'br_main/base.html' %}
+{% load static %}
+
+{% block title %}Despre noi — {{ company.name }}{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Despre noi</p>
+    <h1>{{ company.tagline }}</h1>
+    <p class="lead">Bramante este o fabrică de ferestre care produce și montează tâmplărie din PVC și aluminiu.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap about">
+    <div class="prose">
+      {# TODO: replace with the company's real story (founding year, team, completed projects). #}
+      <p>Am pornit de la o idee simplă: o fereastră bună se vede abia după ani, în facturile mai mici la încălzire, în liniștea din casă și în feronerie care se închide la fel de ușor ca în prima zi.</p>
+      <p>De aceea controlăm tot procesul: consultanța, măsurarea, producția în fabrica proprie și montajul făcut de echipele noastre. Lucrăm cu profile din PVC și aluminiu, geam termoizolant și feronerie de calitate, iar fiecare produs este fabricat la dimensiune.</p>
+      <p>Realizăm lucrări pentru case și apartamente, dar și pentru birouri, magazine și clădiri publice: de la o singură fereastră până la fațade întregi din aluminiu.</p>
+    </div>
+    <div class="about-emblem">
+      <img src="{% static 'br_main/images/bramante_emblem_option_2_1024x1024.png' %}" alt="Emblema Bramante" width="280" height="280">
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Valorile noastre</p>
+      <h2>Ce ne ghidează în fiecare lucrare</h2>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-num">01</span><h3>Precizie</h3><p>Măsurăm de două ori și fabricăm o singură dată, exact pe dimensiunea golului.</p></div>
+      <div class="feature"><span class="feature-num">02</span><h3>Materiale verificate</h3><p>Folosim doar profile, geamuri și accesorii pe care le-am testat în timp.</p></div>
+      <div class="feature"><span class="feature-num">03</span><h3>Seriozitate</h3><p>Termene respectate, oferte clare și fără costuri ascunse.</p></div>
+      <div class="feature"><span class="feature-num">04</span><h3>Grijă după montaj</h3><p>Suntem aici pentru reglaje și service, oricând aveți nevoie.</p></div>
+    </div>
+  </div>
+</section>
+
+{% include 'br_main/partials/cta.html' %}
+{% endblock %}

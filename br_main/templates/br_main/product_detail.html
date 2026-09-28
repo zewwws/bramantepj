@@ -1,0 +1,55 @@
+{% extends 'br_main/base.html' %}
+
+{% block title %}{{ product.name }} — {{ company.name }}{% endblock %}
+{% block description %}{{ product.short_description }}{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Navigare">
+      <a href="{% url 'br_main:product_list' %}">Produse</a> <span aria-hidden="true">/</span>
+      <a href="{% url 'br_main:product_list' %}#{{ product.category }}">{{ product.get_category_display }}</a>
+    </nav>
+    <h1>{{ product.name }}</h1>
+    <p class="lead">{{ product.short_description }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap detail">
+    <div class="detail-media">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+        {% include 'br_main/partials/icon.html' with name=product.icon %}
+      {% endif %}
+    </div>
+    <div class="detail-body">
+      <p class="meta"><span class="tag tag-dark">{{ product.get_material_display }}</span></p>
+      <div class="prose">{{ product.description|linebreaks }}</div>
+      {% if product.feature_list %}
+        <h2 class="h3">Caracteristici</h2>
+        <ul class="checklist">
+          {% for feature in product.feature_list %}<li>{{ feature }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+      <a class="btn btn-dark" href="{% url 'br_main:contact' %}?produs={{ product.slug }}">Cere ofertă pentru acest produs</a>
+    </div>
+  </div>
+</section>
+
+{% if related %}
+<section class="section section-tint">
+  <div class="wrap">
+    <h2 class="group-title">Alte produse</h2>
+    <div class="cards">
+      {% for product in related %}
+        {% include 'br_main/partials/product_card.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% include 'br_main/partials/cta.html' %}
+{% endblock %}

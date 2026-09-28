@@ -1,0 +1,15 @@
+<a class="card" href="{{ product.get_absolute_url }}">
+  <div class="card-media">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+    {% else %}
+      {% include 'br_main/partials/icon.html' with name=product.icon %}
+    {% endif %}
+    <span class="tag">{{ product.get_material_display }}</span>
+  </div>
+  <div class="card-body">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.short_description }}</p>
+    <span class="more">Detalii <span aria-hidden="true">→</span></span>
+  </div>
+</a>
