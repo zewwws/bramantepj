@@ -17,7 +17,7 @@
 
 <section class="section">
   <div class="wrap detail">
-    <div class="detail-media">
+    <div class="detail-media{% if product.image %} has-image{% endif %}">
       {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
       {% else %}

@@ -154,7 +154,8 @@ p { margin: 0 0 1em; }
   border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; display: grid; place-items: center;
   background: linear-gradient(140deg, var(--navy) 0%, var(--navy-soft) 100%); color: #fff; position: sticky; top: 100px;
 }
-.detail-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.detail-media.has-image { aspect-ratio: auto; background: var(--tint); }
+.detail-media img { width: 100%; height: auto; max-height: 75vh; object-fit: contain; }
 .detail-media .icon { width: 150px; height: 150px; }
 .meta { margin-bottom: 1.5rem; }
 .prose p { color: #3a3e4d; }
@@ -171,7 +172,7 @@ p { margin: 0 0 1em; }
 .about-emblem img { margin: 0 auto; }
 
 /* Contact */
-.contact { display: grid; grid-template-columns: 1.4fr .6fr; gap: 4rem; align-items: start; }
+.contact { display: grid; grid-template-columns: 1.3fr .7fr; gap: 4rem; align-items: start; }
 .field { margin-bottom: 1.2rem; }
 .field label { display: block; font-weight: 600; font-size: .92rem; margin-bottom: .4rem; }
 .field input, .field select, .field textarea {
@@ -188,13 +189,35 @@ p { margin: 0 0 1em; }
 .contact-info dd { margin: .2rem 0 0; }
 .contact-info a { color: var(--navy); font-weight: 600; text-decoration: none; }
 
-.messengers { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
-.messengers .btn { padding: .65em 1.1em; font-size: .88rem; color: #fff; }
-.btn-whatsapp { background: #1f9e55; }
-.btn-whatsapp:hover { background: #17864a; }
-.btn-viber { background: #7360f2; }
-.btn-viber:hover { background: #5d4bd6; }
-.contact-info .fb-link { display: inline-block; margin-top: 1.4rem; font-size: .92rem; }
+.channels-title {
+  margin: 1.8rem 0 .8rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+  font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.channels { display: grid; gap: .6rem; }
+.contact-info a.channel {
+  --brand: var(--navy);
+  display: flex; align-items: center; gap: .9rem; padding: .75rem .9rem;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  color: var(--ink); font-weight: 400; text-decoration: none;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.contact-info a.channel:hover {
+  border-color: var(--brand); transform: translateY(-2px);
+  box-shadow: 0 10px 24px -12px var(--brand);
+}
+.contact-info a.channel-whatsapp { --brand: #25d366; }
+.contact-info a.channel-viber { --brand: #7360f2; }
+.contact-info a.channel-facebook { --brand: #1877f2; }
+.channel-icon {
+  flex: none; width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--brand); color: #fff;
+}
+.channel-icon svg { width: 22px; height: 22px; }
+.channel-text { flex: 1; display: flex; flex-direction: column; line-height: 1.3; }
+.channel-text strong { font-weight: 600; color: var(--navy); }
+.channel-text small { font-size: .82rem; color: var(--muted); }
+.channel-arrow { color: var(--muted); transition: transform .2s, color .2s; }
+.contact-info a.channel:hover .channel-arrow { transform: translateX(3px); color: var(--brand); }
 .map iframe { display: block; width: 100%; height: 420px; border: 0; filter: grayscale(.25); }
 
 /* Social */

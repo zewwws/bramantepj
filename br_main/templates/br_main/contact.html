@@ -37,11 +37,24 @@
         <dt>Adresă</dt><dd><a href="{{ company.map_link }}" target="_blank" rel="noopener">{{ company.address }}</a></dd>
         <dt>Program</dt><dd>{{ company.hours }}</dd>
       </dl>
-      <div class="messengers">
-        <a class="btn btn-whatsapp" href="{{ company.whatsapp }}" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
-        <a class="btn btn-viber" href="{{ company.viber }}">Scrie pe Viber</a>
+      <p class="channels-title">Sau scrieți-ne direct</p>
+      <div class="channels">
+        <a class="channel channel-whatsapp" href="{{ company.whatsapp }}" target="_blank" rel="noopener">
+          <span class="channel-icon">{% include 'br_main/partials/brand_icon.html' with name='whatsapp' %}</span>
+          <span class="channel-text"><strong>WhatsApp</strong><small>Răspundem rapid</small></span>
+          <span class="channel-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="channel channel-viber" href="{{ company.viber }}">
+          <span class="channel-icon">{% include 'br_main/partials/brand_icon.html' with name='viber' %}</span>
+          <span class="channel-text"><strong>Viber</strong><small>Trimiteți poze și dimensiuni</small></span>
+          <span class="channel-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="channel channel-facebook" href="{{ company.facebook }}" target="_blank" rel="noopener">
+          <span class="channel-icon">{% include 'br_main/partials/brand_icon.html' with name='facebook' %}</span>
+          <span class="channel-text"><strong>Facebook</strong><small>Lucrările noastre</small></span>
+          <span class="channel-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-      <a class="fb-link" href="{{ company.facebook }}" target="_blank" rel="noopener">Urmăriți-ne pe Facebook</a>
     </aside>
   </div>
 </section>
